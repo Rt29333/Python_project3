@@ -2,6 +2,7 @@ from PyQt5.QtCore import QTimer
 from Random import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
+import random
 import time
 import threading
 import pyttsx3
@@ -29,17 +30,33 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
             name_read = fp.read()
         name_list = name_read.split('\n')
         # print(name_list)
-        for name in name_list:
-            # print('开始111', self.num)
-            # print('暂停111', self.num1)
-            if self.num == self.num1 - 1:
-                break
-            # 实时刷新,随机显示
-            # print(name)
-            QtWidgets.QApplication.processEvents()
-            self.lineEdit.setText(name)
+        if self.radioButton.isChecked():
+            for name in name_list:
+                # print('开始111', self.num)
+                # print('暂停111', self.num1)
+                if self.num == self.num1 - 1:
+                    break
+                # 实时刷新,随机显示
+                # print(name)
+                QtWidgets.QApplication.processEvents()
+                self.lineEdit.setText(name)
+        elif self.radioButton_2.isChecked():
+            numbers = random.sample(range(0, len(name_list)), len(name_list))
+            # print(numbers)
+            # print("随机点名")
+            for num in numbers:
+                name = name_list[num]
+                # print(name)
+                if self.num == self.num1 - 1:
+                    break
+                QtWidgets.QApplication.processEvents()
+                self.lineEdit.setText(name)
 
     def start(self):
+        # if self.radioButton.isChecked():
+        #     print('顺序点名')
+        # elif self.radioButton_2.isChecked():
+        #     print("随机点名")
         self.num += 1
         # print('开始', self.num)
         self.pushButton.setEnabled(False)
@@ -54,6 +71,7 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_2.setEnabled(False)
         self.pushButton.setEnabled(True)
         self.timer.stop()
+
 
 
 
