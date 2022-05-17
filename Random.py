@@ -14,7 +14,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(752, 556)
+        MainWindow.resize(752, 555)
+        MainWindow.setWindowIcon(QtGui.QIcon('logo.png'))
         font = QtGui.QFont()
         font.setFamily("楷体")
         font.setPointSize(20)
@@ -25,6 +26,9 @@ class Ui_MainWindow(object):
         self.widget.setObjectName("widget")
         self.pushButton_3 = QtWidgets.QPushButton(self.widget)
         self.pushButton_3.setGeometry(QtCore.QRect(450, 250, 241, 41))
+
+
+
         font = QtGui.QFont()
         font.setFamily("楷体")
         font.setPointSize(20)
@@ -96,8 +100,9 @@ class Ui_MainWindow(object):
         self.textBrowser.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.textBrowser.setObjectName("textBrowser")
         self.label = QtWidgets.QLabel(self.widget)
-        self.label.setGeometry(QtCore.QRect(30, 40, 141, 171))
+        self.label.setGeometry(QtCore.QRect(110, 40, 181, 160))
         self.label.setText("")
+        self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.pushButton_5 = QtWidgets.QPushButton(self.widget)
         self.pushButton_5.setGeometry(QtCore.QRect(140, 460, 93, 51))

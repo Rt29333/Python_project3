@@ -17,14 +17,26 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         self.num = 0
         self.num1 = 1
 
+
         self.lineEdit.setText('会是谁呢？')
         self.lineEdit.setReadOnly(True)
+
+        # 背景图片
+        background_img = QtGui.QPalette()
+        background_img.setBrush(self.widget.backgroundRole(),
+                                QtGui.QBrush(QtGui.QPixmap('background.jpg').scaled(550, 334)))
+        self.widget.setPalette(background_img)
+
+
 
         self.pushButton_4.clicked.connect(self.Click_reselect)
         self.pushButton_4.setEnabled(False)
 
         self.pushButton.clicked.connect(self.start)
         self.pushButton.setEnabled(False)
+
+        self.image = QtGui.QPixmap('select.jpg').scaled(225, 160)
+        self.label.setPixmap(self.image)
 
         self.pushButton_2.clicked.connect(self.stop)
         # 默认禁用暂停按键
