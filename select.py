@@ -24,6 +24,8 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_2.clicked.connect(self.stop)
         self.pushButton_2.setEnabled(False)
 
+
+
     def Click_Show(self):
         with open('dataname.txt', 'r', encoding='utf8') as fp:
             name_read = fp.read()
@@ -54,6 +56,8 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_2.setEnabled(False)
         self.pushButton.setEnabled(True)
         self.timer.stop()
+
+
 
 
 
