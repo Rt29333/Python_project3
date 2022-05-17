@@ -20,7 +20,7 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         self.lineEdit.setText('会是谁呢？')
         self.lineEdit.setReadOnly(True)
 
-        self.pushButton_4.clicked.connect(self.Click_Clear)
+        self.pushButton_4.clicked.connect(self.Click_reselect)
         self.pushButton_4.setEnabled(False)
 
         self.pushButton.clicked.connect(self.start)
@@ -32,12 +32,18 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.pushButton_3.clicked.connect(self.Click_Insert)
 
+        self.textBrowser.setAlignment(QtCore.Qt.AlignCenter)
+
+        self.pushButton_5.clicked.connect(self.Click_Clear)
 
         # 默认选择 随机点名
         self.radioButton_2.setChecked(True)
 
 
     def Click_Clear(self):
+        self.textBrowser.clear()
+
+    def Click_reselect(self):
         self.lineEdit.clear()
         self.lineEdit.setText('会是谁呢？')
         self.pushButton.setEnabled(False)
@@ -69,6 +75,8 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
                     # print('开始111', self.num)
                     # print('暂停111', self.num1)
                     if self.num == self.num1 - 1:
+                        # print("恭喜{}中奖".format(name))
+                        self.textBrowser.append("恭喜 \"{}\" 中奖啦".format(name))
                         break
                     # 实时刷新,随机显示
                     # print(name)
@@ -82,6 +90,8 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
                     name = name_list[num]
                     # print(name)
                     if self.num == self.num1 - 1:
+                        # print("恭喜{}中奖".format(name))
+                        self.textBrowser.append("恭喜 \"{}\" 中奖啦".format(name))
                         break
                     QtWidgets.QApplication.processEvents()
                     self.lineEdit.setText(name)
