@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(752, 555)
-        MainWindow.setWindowIcon(QtGui.QIcon('logo.png'))
+
         font = QtGui.QFont()
         font.setFamily("楷体")
         font.setPointSize(20)
@@ -26,8 +26,6 @@ class Ui_MainWindow(object):
         self.widget.setObjectName("widget")
         self.pushButton_3 = QtWidgets.QPushButton(self.widget)
         self.pushButton_3.setGeometry(QtCore.QRect(450, 250, 241, 41))
-
-
 
         font = QtGui.QFont()
         font.setFamily("楷体")

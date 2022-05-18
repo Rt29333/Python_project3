@@ -3,6 +3,7 @@ from Random import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 import random
+import ctypes
 import time
 import threading
 import pyttsx3
@@ -17,6 +18,7 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         self.num = 0
         self.num1 = 1
 
+        self.setWindowIcon(QtGui.QIcon('logo.png'))
 
         self.lineEdit.setText('会是谁呢？')
         self.lineEdit.setReadOnly(True)
@@ -24,10 +26,8 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         # 背景图片
         background_img = QtGui.QPalette()
         background_img.setBrush(self.widget.backgroundRole(),
-                                QtGui.QBrush(QtGui.QPixmap('background.jpg').scaled(550, 334)))
-        self.widget.setPalette(background_img)
-
-
+                                QtGui.QBrush(QtGui.QPixmap('background.jpg').scaled(752, 600)))
+        self.setPalette(background_img)
 
         self.pushButton_4.clicked.connect(self.Click_reselect)
         self.pushButton_4.setEnabled(False)
@@ -50,7 +50,6 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # 默认选择 随机点名
         self.radioButton_2.setChecked(True)
-
 
     def Click_Clear(self):
         self.textBrowser.clear()
@@ -86,14 +85,16 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
                 for name in name_list:
                     # print('开始111', self.num)
                     # print('暂停111', self.num1)
+                    QtWidgets.QApplication.processEvents()
+                    self.lineEdit.setText(name)
                     if self.num == self.num1 - 1:
                         # print("恭喜{}中奖".format(name))
                         self.textBrowser.append("恭喜 \"{}\" 中奖啦".format(name))
                         break
                     # 实时刷新,随机显示
                     # print(name)
-                    QtWidgets.QApplication.processEvents()
-                    self.lineEdit.setText(name)
+
+
             elif self.radioButton_2.isChecked():
                 numbers = random.sample(range(0, len(name_list)), len(name_list))
                 # print(numbers)
@@ -101,12 +102,13 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
                 for num in numbers:
                     name = name_list[num]
                     # print(name)
+                    QtWidgets.QApplication.processEvents()
+                    self.lineEdit.setText(name)
                     if self.num == self.num1 - 1:
                         # print("恭喜{}中奖".format(name))
                         self.textBrowser.append("恭喜 \"{}\" 中奖啦".format(name))
                         break
-                    QtWidgets.QApplication.processEvents()
-                    self.lineEdit.setText(name)
+
         except Exception as e:
             # print(e)
             QtWidgets.QMessageBox.warning(self.widget, '提示', '未导出学生信息名单')
