@@ -1,18 +1,16 @@
 from PyQt5.QtCore import QTimer
-from Random import *
+from Randomselect import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 import random
 
 # 用了一个数字算法
-
 class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(Random_Slect, self).__init__()
         self.setupUi(self)
         self.num = 0
         self.num1 = 1
-
         self.setWindowIcon(QtGui.QIcon('Imgs/logo.png'))
 
         self.lineEdit.setText('会是谁呢？')
@@ -26,9 +24,17 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.pushButton_4.clicked.connect(self.Click_reselect)
         self.pushButton_4.setEnabled(False)
+        #设置按键透明度   0是全透明，1是不透明，取值在0-1之间
+        op = QtWidgets.QGraphicsOpacityEffect()
+        op.setOpacity(0.3)
+        self.pushButton_4.setGraphicsEffect(op)
 
         self.pushButton.clicked.connect(self.start)
         self.pushButton.setEnabled(False)
+        # 设置按键透明度
+        op = QtWidgets.QGraphicsOpacityEffect()
+        op.setOpacity(0.3)
+        self.pushButton.setGraphicsEffect(op)
 
         self.image = QtGui.QPixmap('Imgs/select.jpg').scaled(225, 160)
         self.label.setPixmap(self.image)
@@ -36,6 +42,9 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_2.clicked.connect(self.stop)
         # 默认禁用暂停按键
         self.pushButton_2.setEnabled(False)
+        op = QtWidgets.QGraphicsOpacityEffect()
+        op.setOpacity(0.3)
+        self.pushButton_2.setGraphicsEffect(op)
 
         self.pushButton_3.clicked.connect(self.Click_Insert)
 
@@ -53,8 +62,20 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         self.lineEdit.clear()
         self.lineEdit.setText('会是谁呢？')
         self.pushButton.setEnabled(False)
+        op = QtWidgets.QGraphicsOpacityEffect()
+        op.setOpacity(0.3)
+        self.pushButton.setGraphicsEffect(op)
         self.pushButton_3.setEnabled(True)
         self.pushButton_4.setEnabled(False)
+        op = QtWidgets.QGraphicsOpacityEffect()
+        op.setOpacity(0.3)
+        self.pushButton_4.setGraphicsEffect(op)
+        op = QtWidgets.QGraphicsOpacityEffect()
+        op.setOpacity(0.3)
+        self.pushButton.setGraphicsEffect(op)
+        op = QtWidgets.QGraphicsOpacityEffect()
+        op.setOpacity(1)
+        self.pushButton_3.setGraphicsEffect(op)
 
     def Click_Insert(self):
         try:
@@ -64,7 +85,17 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
             # print(self.Insert_path)
             if self.Insert_path != "":
                 self.pushButton.setEnabled(True)
+                op = QtWidgets.QGraphicsOpacityEffect()
+                op.setOpacity(1)
+                self.pushButton.setGraphicsEffect(op)
                 self.pushButton_3.setEnabled(False)
+                self.pushButton_4.setEnabled(True)
+                op = QtWidgets.QGraphicsOpacityEffect()
+                op.setOpacity(0.3)
+                self.pushButton_3.setGraphicsEffect(op)
+                op = QtWidgets.QGraphicsOpacityEffect()
+                op.setOpacity(1)
+                self.pushButton_4.setGraphicsEffect(op)
 
         except Exception as e:
             # print(e)
@@ -89,7 +120,6 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
                     # 实时刷新,随机显示
                     # print(name)
 
-
             elif self.radioButton_2.isChecked():
                 numbers = random.sample(range(0, len(name_list)), len(name_list))
                 # print(numbers)
@@ -103,7 +133,6 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
                         # print("恭喜{}中奖".format(name))
                         self.textBrowser.append("恭喜 \"{}\" 中奖啦".format(name))
                         break
-
         except Exception as e:
             # print(e)
             QtWidgets.QMessageBox.warning(self.widget, '提示', '未导出学生信息名单')
@@ -113,13 +142,25 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         #     print('顺序点名')
         # elif self.radioButton_2.isChecked():
         #     print("随机点名")
+
         try:
             self.num += 1
+
             # print('开始', self.num)
             self.pushButton.setEnabled(False)
+            op = QtWidgets.QGraphicsOpacityEffect()
+            op.setOpacity(0.3)
+            self.pushButton.setGraphicsEffect(op)
+
             self.pushButton_2.setEnabled(True)
+            op = QtWidgets.QGraphicsOpacityEffect()
+            op.setOpacity(1)
+            self.pushButton_2.setGraphicsEffect(op)
             self.pushButton_3.setEnabled(False)
             self.pushButton_4.setEnabled(False)
+            op = QtWidgets.QGraphicsOpacityEffect()
+            op.setOpacity(0.3)
+            self.pushButton_4.setGraphicsEffect(op)
             self.timer = QTimer(self)
             self.timer.timeout.connect(self.Click_Show)
             self.timer.start()
@@ -132,7 +173,18 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         self.num1 += 1
         # print('暂停', self.num)
         self.pushButton_2.setEnabled(False)
+        op = QtWidgets.QGraphicsOpacityEffect()
+        op.setOpacity(0.3)
+        self.pushButton_2.setGraphicsEffect(op)
         self.pushButton.setEnabled(True)
+        op = QtWidgets.QGraphicsOpacityEffect()
+        op.setOpacity(1)
+        self.pushButton.setGraphicsEffect(op)
+        op = QtWidgets.QGraphicsOpacityEffect()
+        op.setOpacity(1)
+        self.pushButton_4.setGraphicsEffect(op)
+
+
         self.timer.stop()
 
 
