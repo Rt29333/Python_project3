@@ -114,7 +114,7 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
          print('顺序点名')
       elif self.radioButton_2.isChecked():
          print("随机点名")
-         with open('dataname.txt', 'r', encoding='utf8') as fp:
+         with open('../files/dataname.txt', 'r', encoding='utf8') as fp:
              name_read = fp.read()
          name_list = name_read.split('\n')
          numbers = random.sample(range(0, len(name_list)), len(name_list))

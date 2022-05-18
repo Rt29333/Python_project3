@@ -18,7 +18,7 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         self.num = 0
         self.num1 = 1
 
-        self.setWindowIcon(QtGui.QIcon('logo.png'))
+        self.setWindowIcon(QtGui.QIcon('Imgs/logo.png'))
 
         self.lineEdit.setText('会是谁呢？')
         self.lineEdit.setReadOnly(True)
@@ -26,7 +26,7 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         # 背景图片
         background_img = QtGui.QPalette()
         background_img.setBrush(self.widget.backgroundRole(),
-                                QtGui.QBrush(QtGui.QPixmap('background.jpg').scaled(752, 600)))
+                                QtGui.QBrush(QtGui.QPixmap('Imgs/background.jpg').scaled(752, 600)))
         self.setPalette(background_img)
 
         self.pushButton_4.clicked.connect(self.Click_reselect)
@@ -35,7 +35,7 @@ class Random_Slect(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton.clicked.connect(self.start)
         self.pushButton.setEnabled(False)
 
-        self.image = QtGui.QPixmap('select.jpg').scaled(225, 160)
+        self.image = QtGui.QPixmap('Imgs/select.jpg').scaled(225, 160)
         self.label.setPixmap(self.image)
 
         self.pushButton_2.clicked.connect(self.stop)
